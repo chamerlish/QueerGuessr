@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 from flags import get_random_flag
+import asyncio
+
 
 # intents setup
 intents = discord.Intents.default()
@@ -13,20 +15,42 @@ active_flags = {}  # channel_id: correct_answer
 
 
 @client.command()
-async def send_image(ctx):
+async def play(ctx):
+    # Send invitation embed
+    embed = discord.Embed(
+        title="🏳️‍🌈 Flag Guessing Game",
+        description="Want to play a flag guessing game?\nReact with ✅ to start!",
+        color=discord.Color.purple()
+    )
+    message = await ctx.send(embed=embed)
+    await message.add_reaction("✅")
+
+    def check(reaction, user):
+        return (
+            user != client.user and
+            str(reaction.emoji) == "✅" and
+            reaction.message.id == message.id
+        )
+
+    try:
+        reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
+        await ctx.send(f"🎮 Game starting! Get ready, {user.mention} and everyone!")
+        await start_game(ctx)
+    except asyncio.TimeoutError:
+        await ctx.send("⏳ No one reacted in time. Maybe next time!")
+
+async def start_game(ctx):
     print("Generating random flag image...")
     (name, flag) = get_random_flag()
     image = discord.File("./flags/" + flag, filename=flag)
 
-    embed = discord.Embed(description="🌈 What flag is this? 🌈")
+    embed = discord.Embed(description="🌈 What flag is this?")
     embed.set_image(url="attachment://" + flag)
 
     await ctx.send(embed=embed, file=image)
 
-    # Save the correct answer for this channel (lowercase for easy comparison)
     active_flags[ctx.channel.id] = name.lower()
     print(f"[{ctx.channel.name}] Answer: {name}")
-
 
 @client.event
 async def on_message(message):
@@ -47,10 +71,14 @@ async def on_message(message):
 
         if user_guess == correct_answer:
             await message.channel.send(
-                f"✅ Correct! {message.author.mention} was right, It actually the was**{correct_answer.title()}** flag! Nice one team 🤓🎉"
+                f"Correct! {message.author.mention} was right, It actually the was **{correct_answer.title()}** flag! Nice one team 🤓🎉"
             )
+
+
+
+
             del active_flags[channel_id]  # End the game
-        else:
+        elif user_guess != "!play":
             await message.add_reaction("❌")  # Optional feedback
 
 
