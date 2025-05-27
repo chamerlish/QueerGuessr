@@ -70,9 +70,11 @@ async def on_message(message):
         correct_answer = active_flags[channel_id]
 
         if user_guess == correct_answer:
-            await message.channel.send(
+            result_msg = await message.channel.send(
                 f"Correct! {message.author.mention} was right, It actually the was **{correct_answer.title()}** flag! Nice one team 🤓🎉"
             )
+            await result_msg.add_reaction("🔁")
+            del active_flags[channel_id]
 
 
 
@@ -80,6 +82,22 @@ async def on_message(message):
             del active_flags[channel_id]  # End the game
         elif user_guess != "!play":
             await message.add_reaction("❌")  # Optional feedback
+
+@client.event
+async def on_reaction_add(reaction, user):
+    if user == client.user:
+        return
+
+    if str(reaction.emoji) == "🔁":
+        channel = reaction.message.channel
+
+        # Start new game if none active
+        if channel.id not in active_flags:
+            ctx = await client.get_context(reaction.message)
+            await channel.send(f"🔁 {user.mention} requested a replay! Starting a new round...")
+            await start_game(ctx)
+        else:
+            await channel.send("⚠️ A game is already in progress!")
 
 
 from dotenv import load_dotenv
