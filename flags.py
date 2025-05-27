@@ -9,7 +9,7 @@ flags = {
     # "Gay": "gay.jpg",
     
     "Demiromantic": "demiromantic.jpg",
-    "Demibisexual": "demibisexual.jpg",
+    "Demibisexual": "demisexual.jpg",
 
     "Bisexual": "bisexual.jpg",
     "Pansexual": "pansexual.jpg",

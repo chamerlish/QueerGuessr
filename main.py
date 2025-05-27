@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from flags import get_random_flag
 
 
 # intents setup
@@ -10,9 +11,14 @@ intents.message_content = True  # Required to read message content for commands
 client = commands.Bot(command_prefix='!', intents=intents)
 
 @client.command()
-async def send_image(ctx):    
+async def send_image(ctx):
+    print("Generating random flag image...")
+    (name, flag) = get_random_flag()
+    image = discord.File("./flags/" + flag, filename=flag)
     embed = discord.Embed(description="What flag is this?")
-    await ctx.send(embed=embed)
+    embed.set_image(url="attachment://"+ flag)
+    print(name)
+    await ctx.send(embed=embed, file=image)
 
 @client.event
 async def on_message(message):
@@ -20,6 +26,8 @@ async def on_message(message):
         return
     
     print(f"Received message: {message.content} from {message.author}")
+
+    await client.process_commands(message)
 
 
 from dotenv import load_dotenv
