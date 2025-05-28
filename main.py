@@ -7,21 +7,19 @@ from flags import flags
 import random
 
 intents = discord.Intents.default()
-intents.message_content = True  # Required to read message content for commands
+intents.message_content = True
 
 client = commands.Bot(command_prefix='!', intents=intents)
 
-# Active flag answers per channel (one game per channel)
-active_flags = {}  # channel_id: correct_answer
+active_flags = {}  # channel_id: accepted answers
+game_tasks = {}    # channel_id: asyncio.Task to handle timers
 
 ROUND_TIMEOUT = 60
 HINT_DELAY = ROUND_TIMEOUT // 2
 
-
 def get_random_flag():
     correct_answer = random.choice(list(flags.keys()))
     return correct_answer, flags[correct_answer]
-
 
 @client.command()
 async def play(ctx):
@@ -47,33 +45,37 @@ async def play(ctx):
     except asyncio.TimeoutError:
         await ctx.send("⏳ No one reacted in time. Maybe next time!")
 
-
 async def start_game(ctx):
+    old_task = game_tasks.get(ctx.channel.id)
+    if old_task:
+        old_task.cancel()
+
     correct_answer, info = get_random_flag()
     image = discord.File("./flags/" + info["image"], filename=info["image"])
 
     embed = discord.Embed(description="🌈 What flag is this?")
     embed.set_image(url="attachment://" + info["image"])
-
     await ctx.send(embed=embed, file=image)
 
-    # Store all keywords in lowercase for matching
     active_flags[ctx.channel.id] = [k.lower() for k in info["keywords"]]
-
     print(f"[{ctx.channel.name}] Answer: {correct_answer}")
 
-    # Send hint after half the timeout
-    await asyncio.sleep(HINT_DELAY)
-    if ctx.channel.id in active_flags:
-        await ctx.send(f"💡 Hint: {info.get('hint', 'No hint available.')}")
+    game_tasks[ctx.channel.id] = asyncio.create_task(
+        handle_timer(ctx, correct_answer, info.get("hint", "No hint available."))
+    )
 
-    # Wait for the remaining time
-    await asyncio.sleep(HINT_DELAY)
+async def handle_timer(ctx, correct_answer, hint):
+    try:
+        await asyncio.sleep(HINT_DELAY)
+        if ctx.channel.id in active_flags:
+            await ctx.send(f"💡 Hint: {hint}")
 
-    if ctx.channel.id in active_flags:
-        active_flags.pop(ctx.channel.id)
-        await ctx.send(f"⏰ Time's up! The correct answer was **{correct_answer}**.")
-
+        await asyncio.sleep(HINT_DELAY)
+        if ctx.channel.id in active_flags:
+            del active_flags[ctx.channel.id]
+            await ctx.send(f"⏰ Time's up! The correct answer was **{correct_answer}**.")
+    except asyncio.CancelledError:
+        pass
 
 @client.event
 async def on_message(message):
@@ -94,9 +96,9 @@ async def on_message(message):
             )
             await result_msg.add_reaction("🔁")
             del active_flags[channel_id]
+            game_tasks[channel_id].cancel()
         elif guess != "!play":
             await message.add_reaction("❌")
-
 
 @client.event
 async def on_reaction_add(reaction, user):
@@ -112,7 +114,6 @@ async def on_reaction_add(reaction, user):
             await start_game(ctx)
         else:
             await channel.send("⚠️ A game is already in progress!")
-
 
 load_dotenv()
 client.run(os.getenv("TOKEN"))
