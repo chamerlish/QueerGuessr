@@ -49,8 +49,8 @@ async def start_game(ctx):
 
     await ctx.send(embed=embed, file=image)
 
-    active_flags[ctx.channel.id] = name.lower()
-    print(f"[{ctx.channel.name}] Answer: {name}")
+    active_flags[ctx.channel.id] = [item.lower() for item in name]
+    print(f"[{ctx.channel.name}] Answer: {name[0]}")
 
 @client.event
 async def on_message(message):
@@ -69,9 +69,9 @@ async def on_message(message):
         user_guess = message.content.strip().lower()
         correct_answer = active_flags[channel_id]
 
-        if user_guess == correct_answer:
+        if user_guess in correct_answer:
             result_msg = await message.channel.send(
-                f"Correct! {message.author.mention} was right, It actually the was **{correct_answer.title()}** flag! Nice one team 🤓🎉"
+                f"Correct! {message.author.mention} was right, It actually the was **{correct_answer[0].title()}** flag! Nice one team 🤓🎉"
             )
             await result_msg.add_reaction("🔁")
             del active_flags[channel_id]
