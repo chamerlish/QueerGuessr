@@ -94,6 +94,9 @@ async def on_message(message):
         elif guess != "!play":
             await message.add_reaction("❌")
 
+from PyDictionary import PyDictionary
+dictionary=PyDictionary()
+
 @client.event
 async def on_reaction_add(reaction, user):
     if user == client.user:
@@ -106,6 +109,23 @@ async def on_reaction_add(reaction, user):
             await start_game(ctx)
         else:
             await channel.send("⚠️ A game is already in progress!")
+    if str(reaction.emoji) == "❓":
+        channel = reaction.message.channel
+        
+        ctx = await client.get_context(reaction.message)
+
+        search: str = reaction.message.content.split("**")[1]
+        definition_embed = discord.Embed(
+            title=f"# {search.title()}:",
+            description=dictionary.meaning(search),
+            color=discord.Color.red()
+        )
+        print(dictionary.meaning(search))
+        await ctx.send(embed=definition_embed)
+
+
+        await channel.send(f"🔁 {user.mention} requested a replay! Starting a new round...")
+        await start_game(ctx)
 
 import os
 from dotenv import load_dotenv
