@@ -76,10 +76,6 @@ async def on_message(message):
             await result_msg.add_reaction("🔁")
             del active_flags[channel_id]
 
-
-
-
-            del active_flags[channel_id]  # End the game
         elif user_guess != "!play":
             await message.add_reaction("❌")  # Optional feedback
 
