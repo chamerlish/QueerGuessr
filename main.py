@@ -1,6 +1,10 @@
 import discord
 from discord.ext import commands
 import asyncio
+import random
+import os
+from dotenv import load_dotenv
+from flags import flags  # Make sure this is your flags dictionary
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -8,6 +12,9 @@ intents.message_content = True
 client = commands.Bot(command_prefix='!', intents=intents)
 
 active_flags = {}
+active_hint_tasks = {}  # channel_id -> list of asyncio.Tasks
+active_game_locks = {}  # channel_id -> asyncio.Lock()
+
 ROUND_TIMEOUT = 60
 HINT_TIMES = [ROUND_TIMEOUT // 1.5, ROUND_TIMEOUT // 4, ROUND_TIMEOUT // 8]
 
@@ -40,40 +47,64 @@ async def play(ctx):
         await ctx.send("⏳ No one reacted in time. Maybe next time!")
 
 async def start_game(ctx):
-    correct_answer, info = get_random_flag()
-    image = discord.File("./flags/" + info["image"], filename=info["image"])
+    channel_id = ctx.channel.id
 
-    embed = discord.Embed(description="🌈 What flag is this?")
-    embed.set_image(url="attachment://" + info["image"])
-    await ctx.send(embed=embed, file=image)
+    # Initialize lock if not present
+    if channel_id not in active_game_locks:
+        active_game_locks[channel_id] = asyncio.Lock()
 
-    active_flags[ctx.channel.id] = [k.lower() for k in info["keywords"]]
-    print(f"[{ctx.channel.name}] Answer: {correct_answer}")
+    async with active_game_locks[channel_id]:
+        # Cancel old hint tasks if any
+        if channel_id in active_hint_tasks:
+            for task in active_hint_tasks[channel_id]:
+                task.cancel()
+            # Wait for tasks to fully cancel
+            await asyncio.gather(*active_hint_tasks[channel_id], return_exceptions=True)
+            active_hint_tasks[channel_id] = []
+        else:
+            active_hint_tasks[channel_id] = []
 
-    # Send hints in the background
-    async def send_hint(index, when_remaining):
-        await asyncio.sleep(ROUND_TIMEOUT - when_remaining)
-        if ctx.channel.id in active_flags and index < len(info["hints"]):
-            await ctx.send(f"💡 Hint: {info['hints'][index]}")
+        correct_answer, info = get_random_flag()
+        image = discord.File("./flags/" + info["image"], filename=info["image"])
 
-    asyncio.create_task(send_hint(0, ROUND_TIMEOUT / 1.5))   # 30s remaining (after 30s)
-    asyncio.create_task(send_hint(1, ROUND_TIMEOUT / 4))   # 15s remaining (after 45s)
-    asyncio.create_task(send_hint(2, ROUND_TIMEOUT / 8))   # 7.5s remaining (after 52.5s)
+        embed = discord.Embed(description="🌈 What flag is this?")
+        embed.set_image(url="attachment://" + info["image"])
+        await ctx.send(embed=embed, file=image)
 
-    # Wait until half-time
-    await asyncio.sleep(ROUND_TIMEOUT / 2)
+        active_flags[channel_id] = [k.lower() for k in info["keywords"]]
+        print(f"[{ctx.channel.name}] Answer: {correct_answer}")
 
-    if ctx.channel.id in active_flags:
-        await ctx.send(f"⏳ {ROUND_TIMEOUT / 2}s have passed! That's like half the time, and it's like double a quarter of the time, and it's like the 5 out of 6 minus the third of the full time, maybe you should try to guess and stop reading this stupid message")
+        async def send_hint(index, when_remaining):
+            try:
+                await asyncio.sleep(ROUND_TIMEOUT - when_remaining)
+                if channel_id in active_flags and index < len(info["hints"]):
+                    await ctx.send(f"💡 Hint: {info['hints'][index]}")
+            except asyncio.CancelledError:
+                return
 
-    # Wait the rest of the time
-    await asyncio.sleep(ROUND_TIMEOUT / 2)
+        tasks = [
+            asyncio.create_task(send_hint(0, ROUND_TIMEOUT / 1.5)),
+            asyncio.create_task(send_hint(1, ROUND_TIMEOUT / 4)),
+            asyncio.create_task(send_hint(2, ROUND_TIMEOUT / 8)),
+        ]
+        active_hint_tasks[channel_id].extend(tasks)
 
-    # Show the answer if still active
-    if ctx.channel.id in active_flags:
-        active_flags.pop(ctx.channel.id)
-        await ctx.send(f"⏰ Time's up! The correct answer was **{correct_answer}**.")
+        await asyncio.sleep(ROUND_TIMEOUT / 2)
 
+        if channel_id in active_flags:
+            await ctx.send(f"⏳ {ROUND_TIMEOUT / 2}s have passed! That's like half the time, and it's like double a quarter of the time, and it's like the 5 out of 6 minus the third of the full time, maybe you should try to guess and stop reading this stupid message")
+
+        await asyncio.sleep(ROUND_TIMEOUT / 2)
+
+        if channel_id in active_flags:
+            active_flags.pop(channel_id)
+            # Cancel hint tasks again
+            for task in active_hint_tasks[channel_id]:
+                task.cancel()
+            await asyncio.gather(*active_hint_tasks[channel_id], return_exceptions=True)
+            active_hint_tasks[channel_id] = []
+
+            await ctx.send(f"⏰ Time's up! The correct answer was **{correct_answer}**.")
 
 @client.event
 async def on_message(message):
@@ -91,68 +122,50 @@ async def on_message(message):
             )
             await result_msg.add_reaction("🔁")
             del active_flags[channel_id]
+            # Cancel running hint tasks to avoid old hints
+            if channel_id in active_hint_tasks:
+                for task in active_hint_tasks[channel_id]:
+                    task.cancel()
+                await asyncio.gather(*active_hint_tasks[channel_id], return_exceptions=True)
+                active_hint_tasks[channel_id] = []
         elif guess != "!play":
             await message.add_reaction("❌")
-
-
 
 @client.event
 async def on_reaction_add(reaction, user):
     if user == client.user:
         return
+    
+    channel = reaction.message.channel
+    ctx = await client.get_context(reaction.message)
+
     if str(reaction.emoji) == "🔁":
-        channel = reaction.message.channel
         if channel.id not in active_flags:
-            ctx = await client.get_context(reaction.message)
             await channel.send(f"🔁 {user.mention} requested a replay! Starting a new round...")
             await start_game(ctx)
         else:
             await channel.send("⚠️ A game is already in progress!")
-    # FIX THE DEFINITION REQUEST
+
     elif str(reaction.emoji) == "❓":
-        channel = reaction.message.channel
+        try:
+            search = reaction.message.content.split("**")[1]
+        except IndexError:
+            search = None
         
-        ctx = await client.get_context(reaction.message)
-
-        search: str = reaction.message.content.split("**")[1]
-        definition_embed = discord.Embed(
-            title=f"{search.title()}:",
-            description=(get_definition(search)).title(),
-            # _author="Urban Dictionary",
-            url=f"https://www.urbandictionary.com/define.php?term={search}",
-            color=discord.Color.red()
-        )
-        print(get_definition(search))
-        await ctx.send(embed=definition_embed)
-
-
-        await channel.send(f"🔁 {user.mention} requested a replay! Starting a new round...")
-        await start_game(ctx)
+        if search:
+            definition = get_definition(search)
+            definition_embed = discord.Embed(
+                title=f"{search.title()}:",
+                description=definition,
+                url=f"https://www.urbandictionary.com/define.php?term={search}",
+                color=discord.Color.red()
+            )
+            await ctx.send(embed=definition_embed)
+        else:
+            await ctx.send("❓ Sorry, I couldn't find what you want to define.")
 
 def get_definition(word):
     return flags.get(word, {}).get("description", "No definition found.")
-
-import httpx
-async def search_definition(word):
-    url = f"https://api.urbandictionary.com/v0/define?term={word.lower()}"
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url)
-    
-    if response.status_code == 200:
-        data = response.json()
-        try:
-            return data["list"][0]["definition"]
-        except (KeyError, IndexError):
-            return "No definition found."
-    else:
-        return "Word not found."
-
-
-import os
-from dotenv import load_dotenv
-from flags import flags
-import random
-
 
 load_dotenv()
 client.run(os.getenv("TOKEN"))
