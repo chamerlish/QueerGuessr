@@ -1,11 +1,11 @@
 import discord
 from discord.ext import commands
-from flags import get_random_flag
 import asyncio
 import os
 from dotenv import load_dotenv
+from flags import flags
+import random
 
-# Intents setup
 intents = discord.Intents.default()
 intents.message_content = True  # Required to read message content for commands
 
@@ -14,9 +14,13 @@ client = commands.Bot(command_prefix='!', intents=intents)
 # Active flag answers per channel (one game per channel)
 active_flags = {}  # channel_id: correct_answer
 
-# How long the round lasts (seconds)
 ROUND_TIMEOUT = 60
-HINT_DELAY = ROUND_TIMEOUT // 2  # When to send the hint
+HINT_DELAY = ROUND_TIMEOUT // 2
+
+
+def get_random_flag():
+    correct_answer = random.choice(list(flags.keys()))
+    return correct_answer, flags[correct_answer]
 
 
 @client.command()
@@ -31,9 +35,9 @@ async def play(ctx):
 
     def check(reaction, user):
         return (
-            user != client.user and
-            str(reaction.emoji) == "✅" and
-            reaction.message.id == message.id
+            user != client.user
+            and str(reaction.emoji) == "✅"
+            and reaction.message.id == message.id
         )
 
     try:
@@ -45,8 +49,7 @@ async def play(ctx):
 
 
 async def start_game(ctx):
-    print("Generating random flag image...")
-    names, info = get_random_flag()
+    correct_answer, info = get_random_flag()
     image = discord.File("./flags/" + info["image"], filename=info["image"])
 
     embed = discord.Embed(description="🌈 What flag is this?")
@@ -54,48 +57,45 @@ async def start_game(ctx):
 
     await ctx.send(embed=embed, file=image)
 
-    active_flags[ctx.channel.id] = [name.lower() for name in names]
-    print(f"[{ctx.channel.name}] Answer: {names[0]}")
+    # Store all keywords in lowercase for matching
+    active_flags[ctx.channel.id] = [k.lower() for k in info["keywords"]]
+
+    print(f"[{ctx.channel.name}] Answer: {correct_answer}")
 
     # Send hint after half the timeout
     await asyncio.sleep(HINT_DELAY)
     if ctx.channel.id in active_flags:
         await ctx.send(f"💡 Hint: {info.get('hint', 'No hint available.')}")
 
-    # Wait for the remaining time (half timeout)
+    # Wait for the remaining time
     await asyncio.sleep(HINT_DELAY)
 
-    # After time ends, check if game still active (no correct answer)
     if ctx.channel.id in active_flags:
-        answer = active_flags.pop(ctx.channel.id)
-        await ctx.send(f"⏰ Time's up! The correct answer was **{answer[0].title()}**.")
+        active_flags.pop(ctx.channel.id)
+        await ctx.send(f"⏰ Time's up! The correct answer was **{correct_answer}**.")
 
 
 @client.event
 async def on_message(message):
-    # Ignore the bot's own messages
     if message.author == client.user:
         return
 
-    # Process commands first
     await client.process_commands(message)
 
     channel_id = message.channel.id
 
-    # Only respond if a game is active in this channel
     if channel_id in active_flags:
-        user_guess = message.content.strip().lower()
-        correct_answer = active_flags[channel_id]
+        guess = message.content.strip().lower()
+        correct_keywords = active_flags[channel_id]
 
-        if user_guess in correct_answer:
+        if guess in correct_keywords:
             result_msg = await message.channel.send(
-                f"Correct! {message.author.mention} was right, it actually was the **{correct_answer[0].title()}** flag! Nice one team 🤓🎉"
+                f"Correct! {message.author.mention} was right, it actually was the **{correct_keywords[0].title()}** flag! Nice one team 🤓🎉"
             )
             await result_msg.add_reaction("🔁")
             del active_flags[channel_id]
-
-        elif user_guess != "!play":
-            await message.add_reaction("❌")  # Optional feedback
+        elif guess != "!play":
+            await message.add_reaction("❌")
 
 
 @client.event
@@ -114,6 +114,5 @@ async def on_reaction_add(reaction, user):
             await channel.send("⚠️ A game is already in progress!")
 
 
-# Load token from .env
 load_dotenv()
 client.run(os.getenv("TOKEN"))

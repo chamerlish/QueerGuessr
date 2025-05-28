@@ -1,150 +1,148 @@
 # This file is meant to link the flags with the responses, by just using a dictionary in the format: {"response": "image-filename"}
 
 flags = {
-    ("Ally",): {
+    "Ally": {
         "image": "ally.jpg",
         "hint": "Supports equality for all.",
-        "description": "The Ally flag represents support for the LGBTQ+ community."
+        "keywords": ("Ally",),
     },
 
-    ("Lesbian", "Les"): {
+    "Lesbian": {
         "image": "lesbian.jpg",
         "hint": "Women loving women.",
-        "description": "The Lesbian flag is for women who love women."
+        "keywords": ("Lesbian", "Les"),
     },
 
-    ("Butch Lesbian", "Butch"): {
+    "Butch Lesbian": {
         "image": "butch-lesbian.jpg",
         "hint": "A more masculine lesbian identity.",
-        "description": "The Butch Lesbian flag represents lesbians with masculine traits."
+        "keywords": ("Butch Lesbian", "Butch"),
     },
 
-    ("Labrys Lesbian", "Labrys"): {
+    "Labrys Lesbian": {
         "image": "labrys-lesbian.jpg",
         "hint": "Known for the labrys symbol.",
-        "description": "The Labrys Lesbian flag features the double-headed axe symbol."
+        "keywords": ("Labrys Lesbian", "Labrys"),
     },
 
-    # ("Gay"): "gay.jpg",  # You can add this as needed
-
-    ("Demiromantic",): {
+    "Demiromantic": {
         "image": "demiromantic.jpg",
         "hint": "Romantic feelings develop after strong emotional bond.",
-        "description": "The Demiromantic flag represents people who develop romantic feelings after close emotional connections."
+        "keywords": ("Demiromantic",),
     },
 
-    ("Demisexual", "Demisex"): {
+    "Demisexual": {
         "image": "demisexual.jpg",
         "hint": "Sexual attraction after emotional connection.",
-        "description": "The Demisexual flag represents people who experience sexual attraction only after emotional bonding."
+        "keywords": ("Demisexual", "Demisex"),
     },
 
-    ("Bisexual", "Bi"): {
+    "Bisexual": {
         "image": "bisexual.jpg",
         "hint": "Attracted to two or more genders.",
-        "description": "The Bisexual flag represents attraction to both the same and different genders."
+        "keywords": ("Bisexual", "Bi"),
     },
 
-    ("Pansexual", "Pan"): {
+    "Pansexual": {
         "image": "pansexual.jpg",
         "hint": "Attracted regardless of gender.",
-        "description": "The Pansexual flag represents attraction to all genders."
+        "keywords": ("Pansexual", "Pan"),
     },
 
-    ("Omnisexual", "Omni"): {
+    "Omnisexual": {
         "image": "omnisexual.jpg",
         "hint": "Similar to pansexual but acknowledges gender.",
-        "description": "The Omnisexual flag represents attraction to all genders but with recognition of gender."
+        "keywords": ("Omnisexual", "Omni"),
     },
 
-    ("Polysexual",): {
+    "Polysexual": {
         "image": "polysexual.jpg",
         "hint": "Attracted to multiple, but not all, genders.",
-        "description": "The Polysexual flag represents attraction to multiple genders, but not all."
+        "keywords": ("Polysexual",),
     },
 
-    ("Polyamorous",): {
+    "Polyamorous": {
         "image": "polyamorous.jpg",
         "hint": "Multiple consensual romantic relationships.",
-        "description": "The Polyamorous flag represents people who have multiple romantic relationships with consent."
+        "keywords": ("Polyamorous",),
     },
 
-    ("Femboy",): {
+    "Femboy": {
         "image": "femboy.png",
         "hint": "A boy with feminine traits.",
-        "description": "The Femboy flag represents males who express femininity."
+        "keywords": ("Femboy",),
     },
 
-    ("Transgender", "Trans"): {
+    "Transgender": {
         "image": "transgender.jpg",
         "hint": "Gender identity differs from assigned sex.",
-        "description": "The Transgender flag represents people whose gender identity differs from the sex they were assigned at birth."
+        "keywords": ("Transgender", "Trans"),
     },
 
-    ("Transandrogynous",): {
+    "Transandrogynous": {
         "image": "transandrogynous.png",
         "hint": "Blending transgender and androgynous identities.",
-        "description": "The Transandrogynous flag represents a blend of transgender and androgynous identities."
+        "keywords": ("Transandrogynous",),
     },
 
-    ("Transmasculine", "Transmasc"): {
+    "Transmasculine": {
         "image": "transmasc.jpg",
         "hint": "More masculine gender identity assigned female at birth.",
-        "description": "The Transmasculine flag represents people assigned female at birth but identifying more masculinely."
+        "keywords": ("Transmasculine", "Transmasc"),
     },
 
-    ("Transfeminine", "Transfem"): {
+    "Transfeminine": {
         "image": "transfem.png",
         "hint": "More feminine gender identity assigned male at birth.",
-        "description": "The Transfeminine flag represents people assigned male at birth but identifying more femininely."
+        "keywords": ("Transfeminine", "Transfem"),
     },
 
-    ("Genderfluid", "Fluid"): {
+    "Genderfluid": {
         "image": "genderfluid.jpg",
         "hint": "Gender identity shifts over time.",
-        "description": "The Genderfluid flag represents people whose gender identity fluctuates."
+        "keywords": ("Genderfluid", "Fluid"),
     },
 
-    ("Non-Binary", "Non-Bi", "NB"): {
+    "Non-Binary": {
         "image": "non-binary.jpg",
         "hint": "Gender outside the binary man/woman.",
-        "description": "The Non-Binary flag represents people whose gender doesn't fit strictly as male or female."
+        "keywords": ("Non-Binary", "Non-Bi", "NB"),
     },
 
-    ("Intersex", "Inter"): {
+    "Intersex": {
         "image": "intersex.jpg",
         "hint": "Born with reproductive or sexual anatomy that doesn’t fit typical definitions.",
-        "description": "The Intersex flag represents people with intersex traits."
+        "keywords": ("Intersex", "Inter"),
     },
 
-    ("Agender",): {
+    "Agender": {
         "image": "agender.jpg",
         "hint": "No gender identity.",
-        "description": "The Agender flag represents people who identify as having no gender."
+        "keywords": ("Agender",),
     },
 
-    ("Genderqueer",): {
+    "Genderqueer": {
         "image": "genderqueer.jpg",
         "hint": "Gender outside or beyond the binary.",
-        "description": "The Genderqueer flag represents people who reject traditional gender distinctions."
+        "keywords": ("Genderqueer",),
     },
 
-    ("Xenogender", "Xeno"): {
+    "Xenogender": {
         "image": "xenogender.png",
         "hint": "Gender identity beyond conventional categories.",
-        "description": "The Xenogender flag represents genders that are difficult to describe in traditional terms."
+        "keywords": ("Xenogender", "Xeno"),
     },
 
-    ("Two Spirit",): {
+    "Two Spirit": {
         "image": "two-spirit.jpg",
         "hint": "Indigenous North American gender identity.",
-        "description": "The Two Spirit flag represents a traditional Indigenous North American gender role."
+        "keywords": ("Two Spirit",),
     },
 
-    ("Asexual", "Ace"): {
+    "Asexual": {
         "image": "asexual.jpg",
         "hint": "Little or no sexual attraction to others.",
-        "description": "The Asexual flag represents people who experience little or no sexual attraction."
+        "keywords": ("Asexual", "Ace"),
     },
 }
 
