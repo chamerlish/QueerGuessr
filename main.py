@@ -63,7 +63,8 @@ async def start_game(ctx):
     # Wait until half-time
     await asyncio.sleep(ROUND_TIMEOUT / 2)
 
-    await ctx.send(f"⏳ {ROUND_TIMEOUT / 2}s have passed! That's like half the time, and it's like double a quarter of the time, and it's like the 5 out of 6 minus the third of the full time, maybe you should try to guess and stop reading this stupid message")
+    if ctx.channel.id in active_flags:
+        await ctx.send(f"⏳ {ROUND_TIMEOUT / 2}s have passed! That's like half the time, and it's like double a quarter of the time, and it's like the 5 out of 6 minus the third of the full time, maybe you should try to guess and stop reading this stupid message")
 
     # Wait the rest of the time
     await asyncio.sleep(ROUND_TIMEOUT / 2)

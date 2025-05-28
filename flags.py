@@ -6,7 +6,7 @@ flags = {
         "hints": (
             "It's a form of support.",
             "Not part of the community itself.",
-            "Supports equality for all.",
+            "Supports equality for all...",
         ),
         "keywords": ("Ally",),
     },
@@ -16,7 +16,7 @@ flags = {
         "hints": (
             "It's a sexuality.",
             "Women loving women.",
-            "One of the most well-known orientations.",
+            "One of the most well-known orientations...",
         ),
         "keywords": ("Lesbian", "Les"),
     },
@@ -24,9 +24,9 @@ flags = {
     "Butch Lesbian": {
         "image": "butch-lesbian.jpg",
         "hints": (
+            "It's a sexual orientation."
             "A more specific lesbian identity.",
-            "Often presents more masculine.",
-            "Masculine-presenting lesbian.",
+            "Often presents more masculine...",
         ),
         "keywords": ("Butch Lesbian", "Butch"),
     },
@@ -34,9 +34,9 @@ flags = {
     "Labrys Lesbian": {
         "image": "labrys-lesbian.jpg",
         "hints": (
+            "It's a sexual orientation.",
             "Another type of lesbian identity.",
-            "Associated with a double-headed axe.",
-            "Known for the labrys symbol.",
+            "Very linked to feminist roots...",
         ),
         "keywords": ("Labrys Lesbian", "Labrys"),
     },
@@ -45,8 +45,8 @@ flags = {
         "image": "demiromantic.jpg",
         "hints": (
             "It's a romantic orientation.",
-            "Needs emotional bond before attraction.",
-            "Romantic feelings develop after emotional connection.",
+            "",
+            "Romantic feelings develop after emotional connection...",
         ),
         "keywords": ("Demiromantic",),
     },
@@ -55,8 +55,8 @@ flags = {
         "image": "demisexual.jpg",
         "hints": (
             "It's a sexual orientation.",
-            "Needs emotional bond before attraction.",
-            "Sexual attraction after emotional connection.",
+            "",
+            "Sexual attraction after emotional connection...",
         ),
         "keywords": ("Demisexual", "Demisex"),
     },
@@ -64,9 +64,9 @@ flags = {
     "Bisexual": {
         "image": "bisexual.jpg",
         "hints": (
-            "It's a common orientation.",
-            "Attracted to more than one gender.",
-            "Attracted to two or more genders.",
+            "It's a sexual orientation.",
+            "*__GENERALLLY__* within \"gender\" boundaries.",
+            "*See both sides like Chanel...*",
         ),
         "keywords": ("Bisexual", "Bi"),
     },
@@ -74,9 +74,9 @@ flags = {
     "Pansexual": {
         "image": "pansexual.jpg",
         "hints": (
-            "Gender doesn't factor into attraction.",
+            "It's a sexual orientation.",
             "Inclusive of all gender identities.",
-            "Attracted regardless of gender.",
+            "Attraction regardless of gender...",
         ),
         "keywords": ("Pansexual", "Pan"),
     },
@@ -84,9 +84,9 @@ flags = {
     "Omnisexual": {
         "image": "omnisexual.jpg",
         "hints": (
-            "Similar to pansexual.",
-            "Gender plays a role but doesn’t limit.",
-            "Acknowledges gender but is still open.",
+            "It's a sexual orientation.",
+            "Inclusive of all gender identities.",
+            "Gender plays a role but doesn’t limit...",
         ),
         "keywords": ("Omnisexual", "Omni"),
     },
@@ -94,9 +94,9 @@ flags = {
     "Polysexual": {
         "image": "polysexual.jpg",
         "hints": (
-            "Not attracted to everyone.",
-            "Multiple but not all genders.",
-            "Attracted to many, not all.",
+            "It's a sexual orientation.",
+            "Inclusive of all gender identities.",
+            "Attraction to two or more genders...",
         ),
         "keywords": ("Polysexual",),
     },
@@ -104,19 +104,19 @@ flags = {
     "Polyamorous": {
         "image": "polyamorous.jpg",
         "hints": (
-            "About relationships, not orientation.",
-            "More than one romantic relationship.",
-            "Multiple consensual romantic relationships.",
+            "It's a romantic orientation.",
+            "More of a relationship style.",
+            "Multiple consensual romantic relationships...",
         ),
-        "keywords": ("Polyamorous",),
+        "keywords": ("Polyamorous", "Polygamous", "Polygamy"),
     },
 
     "Femboy": {
         "image": "femboy.png",
         "hints": (
             "Gender expression focused.",
-            "Masculine body, feminine traits.",
-            "A boy with feminine traits.",
+            "Considered within \"gender\" boundaries."
+            "Masculine body, feminine traits...",
         ),
         "keywords": ("Femboy",),
     },
@@ -124,9 +124,9 @@ flags = {
     "Transgender": {
         "image": "transgender.jpg",
         "hints": (
-            "Gender identity related.",
-            "Different from assigned sex at birth.",
-            "Gender identity differs from assigned sex.",
+            "Gender expression focused.",
+            "*__GENERALLLY__* within \"gender\" boundaries.",
+            "Gender identity differing from assigned sex...",
         ),
         "keywords": ("Transgender", "Trans"),
     },
@@ -134,9 +134,9 @@ flags = {
     "Transandrogynous": {
         "image": "transandrogynous.png",
         "hints": (
-            "Mixes gender expressions.",
-            "Androgynous and transgender.",
-            "Blending transgender and androgynous identities.",
+            "Gender expression focused.",
+            "Beyond tipical gender boundaries.",
+            "Blending transgender and androgynous identities...",
         ),
         "keywords": ("Transandrogynous",),
     },
@@ -144,9 +144,9 @@ flags = {
     "Transmasculine": {
         "image": "transmasc.jpg",
         "hints": (
-            "Masculine presenting.",
-            "AFAB and identifies as masculine.",
-            "More masculine gender identity assigned female at birth.",
+            "Gender expression focused.",
+            "Can be beyond gender boundaries.",
+            "A more masculine gender identity...",
         ),
         "keywords": ("Transmasculine", "Transmasc"),
     },
@@ -154,9 +154,9 @@ flags = {
     "Transfeminine": {
         "image": "transfem.png",
         "hints": (
-            "Feminine presenting.",
-            "AMAB and identifies as feminine.",
-            "More feminine gender identity assigned male at birth.",
+            "Gender expression focused.",
+            "Can be beyond gender boundaries.",
+            "A more feminine gender identity...",
         ),
         "keywords": ("Transfeminine", "Transfem"),
     },
@@ -164,9 +164,9 @@ flags = {
     "Genderfluid": {
         "image": "genderfluid.jpg",
         "hints": (
-            "Shifts over time.",
-            "Not fixed in one gender.",
-            "Gender identity shifts over time.",
+            "Gender expression focused.",
+            "Tipically considered beyond gender boundaries.",
+            "Gender identity may shift over time...",
         ),
         "keywords": ("Genderfluid", "Fluid"),
     },
@@ -174,9 +174,9 @@ flags = {
     "Non-Binary": {
         "image": "non-binary.jpg",
         "hints": (
-            "Not a man or woman.",
-            "Exists outside the gender binary.",
-            "Gender outside the binary man/woman.",
+            "Gender expression focused.",
+            "Beyond gender boundaries.",
+            "Umbrella term...",
         ),
         "keywords": ("Non-Binary", "Non-Bi", "NB"),
     },
@@ -184,9 +184,9 @@ flags = {
     "Intersex": {
         "image": "intersex.jpg",
         "hints": (
+            "Gender expression focused."
             "Biological variation.",
-            "Not strictly male or female anatomy.",
-            "Born with reproductive or sexual anatomy that doesn’t fit typical definitions.",
+            "Born with reproductive or sexual anatomy that doesn’t fit typical definitions...",
         ),
         "keywords": ("Intersex", "Inter"),
     },
@@ -194,9 +194,9 @@ flags = {
     "Agender": {
         "image": "agender.jpg",
         "hints": (
-            "No gender identity.",
-            "Genderless or neutral.",
-            "Identifies with no gender.",
+            "Gender expression focused.",
+            "Beyond gender boundaries.",
+            "A lack of gender identity...",
         ),
         "keywords": ("Agender",),
     },
@@ -204,9 +204,9 @@ flags = {
     "Genderqueer": {
         "image": "genderqueer.jpg",
         "hints": (
-            "Queer gender identity.",
-            "Outside the binary.",
-            "Gender outside or beyond the binary.",
+            "Gender expression focused.",
+            "Beyond gender boundaries...",
+            "QUEER!",
         ),
         "keywords": ("Genderqueer",),
     },
@@ -214,9 +214,9 @@ flags = {
     "Xenogender": {
         "image": "xenogender.png",
         "hints": (
-            "Unconventional gender concept.",
-            "May use non-human concepts.",
+            "Gender expression focused.",
             "Gender identity beyond conventional categories.",
+            "May use non-human concepts...",
         ),
         "keywords": ("Xenogender", "Xeno"),
     },
@@ -224,9 +224,9 @@ flags = {
     "Two Spirit": {
         "image": "two-spirit.jpg",
         "hints": (
-            "Indigenous identity.",
+            "Sexual and Gender related oriontation.",
             "Cultural and spiritual role.",
-            "Indigenous North American gender identity.",
+            "Indigenous North American gender identity...",
         ),
         "keywords": ("Two Spirit",),
     },
@@ -234,9 +234,9 @@ flags = {
     "Asexual": {
         "image": "asexual.jpg",
         "hints": (
-            "Little or no sexual attraction.",
-            "Not interested in sex.",
-            "Little or no sexual attraction to others.",
+            "it's a Sexual orientation.", 
+            "",
+            "Little or no sexual attraction to others....",
         ),
         "keywords": ("Asexual", "Ace"),
     },
