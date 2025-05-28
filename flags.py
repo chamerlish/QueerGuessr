@@ -9,6 +9,7 @@ flags = {
             "Supports equality for all...",
         ),
         "keywords": ("Ally",),
+        "description": "Someone who supports and advocates for LGBTQ+ rights without identifying as LGBTQ+ themselves."
     },
 
     "Lesbian": {
@@ -19,6 +20,7 @@ flags = {
             "One of the most well-known orientations...",
         ),
         "keywords": ("Lesbian", "Les"),
+        "description": "A woman who is romantically and/or sexually attracted to other women."
     },
 
     "Butch Lesbian": {
@@ -29,6 +31,7 @@ flags = {
             "Often presents more masculine...",
         ),
         "keywords": ("Butch Lesbian", "Butch"),
+        "description": "A lesbian who embraces a masculine gender expression."
     },
 
     "Labrys Lesbian": {
@@ -39,6 +42,7 @@ flags = {
             "Very linked to feminist roots...",
         ),
         "keywords": ("Labrys Lesbian", "Labrys"),
+        "description": "A lesbian identity associated with feminist symbolism and empowerment."
     },
 
     "Demiromantic": {
@@ -49,6 +53,7 @@ flags = {
             "Romantic feelings develop after emotional connection...",
         ),
         "keywords": ("Demiromantic",),
+        "description": "Someone who only experiences romantic attraction after forming a deep emotional bond."
     },
 
     "Demisexual": {
@@ -59,6 +64,7 @@ flags = {
             "Sexual attraction after emotional connection...",
         ),
         "keywords": ("Demisexual", "Demisex"),
+        "description": "A person who feels sexual attraction only after a strong emotional connection."
     },
 
     "Bisexual": {
@@ -69,6 +75,7 @@ flags = {
             "*See both sides like Chanel...*",
         ),
         "keywords": ("Bisexual", "Bi"),
+        "description": "Attracted to two or more genders, often understood as attraction to both men and women."
     },
 
     "Pansexual": {
@@ -79,6 +86,7 @@ flags = {
             "Attraction regardless of gender...",
         ),
         "keywords": ("Pansexual", "Pan"),
+        "description": "Attraction to people regardless of their gender identity."
     },
 
     "Omnisexual": {
@@ -89,6 +97,7 @@ flags = {
             "Gender plays a role but doesn’t limit...",
         ),
         "keywords": ("Omnisexual", "Omni"),
+        "description": "Attracted to all genders, with awareness of gender playing a role."
     },
 
     "Polysexual": {
@@ -99,6 +108,7 @@ flags = {
             "Attraction to two or more genders...",
         ),
         "keywords": ("Polysexual",),
+        "description": "Attracted to multiple, but not all, genders."
     },
 
     "Polyamorous": {
@@ -109,6 +119,7 @@ flags = {
             "Multiple consensual romantic relationships...",
         ),
         "keywords": ("Polyamorous", "Polygamous", "Polygamy"),
+        "description": "Engaging in multiple consensual romantic relationships simultaneously."
     },
 
     "Femboy": {
@@ -119,6 +130,7 @@ flags = {
             "Masculine body, feminine traits...",
         ),
         "keywords": ("Femboy",),
+        "description": "A masculine-bodied person who expresses feminine traits."
     },
 
     "Transgender": {
@@ -129,6 +141,7 @@ flags = {
             "Gender identity differing from assigned sex...",
         ),
         "keywords": ("Transgender", "Trans"),
+        "description": "Someone whose gender identity differs from the sex they were assigned at birth."
     },
 
     "Transandrogynous": {
@@ -139,6 +152,7 @@ flags = {
             "Blending transgender and androgynous identities...",
         ),
         "keywords": ("Transandrogynous",),
+        "description": "A gender identity blending transgender and androgynous traits."
     },
 
     "Transmasculine": {
@@ -149,6 +163,7 @@ flags = {
             "A more masculine gender identity...",
         ),
         "keywords": ("Transmasculine", "Transmasc"),
+        "description": "A transgender person with a more masculine gender identity."
     },
 
     "Transfeminine": {
@@ -159,6 +174,7 @@ flags = {
             "A more feminine gender identity...",
         ),
         "keywords": ("Transfeminine", "Transfem"),
+        "description": "A transgender person with a more feminine gender identity."
     },
 
     "Genderfluid": {
@@ -169,6 +185,7 @@ flags = {
             "Gender identity may shift over time...",
         ),
         "keywords": ("Genderfluid", "Fluid"),
+        "description": "A gender identity that shifts or changes over time."
     },
 
     "Non-Binary": {
@@ -179,6 +196,7 @@ flags = {
             "Umbrella term...",
         ),
         "keywords": ("Non-Binary", "Non-Bi", "NB"),
+        "description": "A gender identity outside the traditional male/female binary."
     },
 
     "Intersex": {
@@ -189,6 +207,7 @@ flags = {
             "Born with reproductive or sexual anatomy that doesn’t fit typical definitions...",
         ),
         "keywords": ("Intersex", "Inter"),
+        "description": "A person born with biological sex characteristics that don't fit typical definitions of male or female."
     },
 
     "Agender": {
@@ -199,6 +218,7 @@ flags = {
             "A lack of gender identity...",
         ),
         "keywords": ("Agender",),
+        "description": "A person who identifies as having no gender."
     },
 
     "Genderqueer": {
@@ -209,6 +229,7 @@ flags = {
             "QUEER!",
         ),
         "keywords": ("Genderqueer",),
+        "description": "A broad gender identity outside conventional categories, often embracing queerness."
     },
 
     "Xenogender": {
@@ -219,6 +240,7 @@ flags = {
             "May use non-human concepts...",
         ),
         "keywords": ("Xenogender", "Xeno"),
+        "description": "A gender identity that uses metaphors or concepts outside human gender norms."
     },
 
     "Two Spirit": {
@@ -229,6 +251,7 @@ flags = {
             "Indigenous North American gender identity...",
         ),
         "keywords": ("Two Spirit",),
+        "description": "A traditional Indigenous North American identity encompassing gender and spiritual roles."
     },
 
     "Asexual": {
@@ -239,9 +262,9 @@ flags = {
             "Little or no sexual attraction to others....",
         ),
         "keywords": ("Asexual", "Ace"),
+        "description": "Experiencing little or no sexual attraction to others."
     },
 }
-
 
 import random
 def get_random_flag():

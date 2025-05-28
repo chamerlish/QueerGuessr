@@ -108,7 +108,8 @@ async def on_reaction_add(reaction, user):
             await start_game(ctx)
         else:
             await channel.send("⚠️ A game is already in progress!")
-    if str(reaction.emoji) == "❓":
+    # FIX THE DEFINITION REQUEST
+    elif str(reaction.emoji) == "❓":
         channel = reaction.message.channel
         
         ctx = await client.get_context(reaction.message)
@@ -116,21 +117,23 @@ async def on_reaction_add(reaction, user):
         search: str = reaction.message.content.split("**")[1]
         definition_embed = discord.Embed(
             title=f"{search.title()}:",
-            description=(await get_definition(search)).title(),
+            description=(get_definition(search)).title(),
             # _author="Urban Dictionary",
             url=f"https://www.urbandictionary.com/define.php?term={search}",
             color=discord.Color.red()
         )
-        print(await get_definition(search))
+        print(get_definition(search))
         await ctx.send(embed=definition_embed)
 
 
         await channel.send(f"🔁 {user.mention} requested a replay! Starting a new round...")
         await start_game(ctx)
 
-import httpx  # install it with: pip install httpx
+def get_definition(word):
+    return flags.get(word, {}).get("description", "No definition found.")
 
-async def get_definition(word):
+import httpx
+async def search_definition(word):
     url = f"https://api.urbandictionary.com/v0/define?term={word.lower()}"
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
