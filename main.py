@@ -94,8 +94,7 @@ async def on_message(message):
         elif guess != "!play":
             await message.add_reaction("❌")
 
-from PyDictionary import PyDictionary
-dictionary=PyDictionary()
+
 
 @client.event
 async def on_reaction_add(reaction, user):
@@ -116,16 +115,35 @@ async def on_reaction_add(reaction, user):
 
         search: str = reaction.message.content.split("**")[1]
         definition_embed = discord.Embed(
-            title=f"# {search.title()}:",
-            description=dictionary.meaning(search),
+            title=f"{search.title()}:",
+            description=(await get_definition(search)).title(),
+            # _author="Urban Dictionary",
+            url=f"https://www.urbandictionary.com/define.php?term={search}",
             color=discord.Color.red()
         )
-        print(dictionary.meaning(search))
+        print(await get_definition(search))
         await ctx.send(embed=definition_embed)
 
 
         await channel.send(f"🔁 {user.mention} requested a replay! Starting a new round...")
         await start_game(ctx)
+
+import httpx  # install it with: pip install httpx
+
+async def get_definition(word):
+    url = f"https://api.urbandictionary.com/v0/define?term={word.lower()}"
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        try:
+            return data["list"][0]["definition"]
+        except (KeyError, IndexError):
+            return "No definition found."
+    else:
+        return "Word not found."
+
 
 import os
 from dotenv import load_dotenv

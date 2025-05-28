@@ -222,7 +222,7 @@ flags = {
     },
 
     "Two Spirit": {
-        "image": "two-spirit.jpg",
+        "image": "regions/two-spirit.jpg",
         "hints": (
             "Sexual and Gender related oriontation.",
             "Cultural and spiritual role.",
