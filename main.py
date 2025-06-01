@@ -7,7 +7,7 @@ from flags import flags  # Your flags dictionary
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = commands.Bot(command_prefix='!', intents=intents)
+client = commands.Bot(command_prefix=':3 ', intents=intents)
 
 active_flags = {}
 active_hint_tasks = {}  # channel_id -> list of asyncio.Tasks

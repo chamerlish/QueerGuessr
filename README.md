@@ -1,93 +1,24 @@
 # QueerGuessr
 
+## :3
+heelloooo, for the pride month i made this like *pride flag blind test* and stuff, since i made it in not even a week there are very few features rn, but do not worry people, i will finish it if i'm not lazy enough, rn thare a a ridicule ammount of flags included tbh as i intended the project to be more of a learning experience for discord.py than enything
+### *invite*: [click me](https://discord.com/oauth2/authorize?client_id=1376836324207755335&scope=bot&permissions=2147608640)
 
+## where from now?
+as i said i do plan on work on it more, SPECIALLY IMPLEMENTING A WHOLE BUNCH OF MORE FLAGS, ofc since the project is literally just two files... merge requests is not our the window just saying...
 
-## Getting started
+tbh i don't see myself running this bot much tbh that's why i made it open source, so people can like run it locally with clones and stuff
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+*(ps: if i didn't add your flag yet just know that it is not not that i think your oriontation is ~invalid or unimportant~ in any shape of form, it's just a a timing issue, i'll try to add as much as possible in the future)*
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+*(ps: if i made any errors regarding any flag or oriontation description feel free to correct me, i am fr a newbie and just know i am not forcing my vision of things to anyone, these are just my basic understandings things that that **came out** during my "researchs")*
 
-## Add your files
+## features and commands:
+firstly the command prefix is ":3", and currently there is just one command really and it's the ***play** command*, meaning to start playing you can just type: `:3 play` on any channel, just know that the games are not synced between one channel to another, meaning people playing on one channel do not have the same game as people on another
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+you can react with "🔁" on the bot's win message to get more infos on the oriontation and a basic documentation which is added manually for each identity, *(ps: i tried to use the urban dictionary api, and it worked, but let's just say urban dictionary is not the best place to get d̷e̷s̸c̷r̷i̷p̸t̷i̷o̴n̷s̷ ̷f̸͒ͅo̸̢̊r̸̜̓ ̴̲͐t̷̲̽h̸͉͝e̷̖̅s̸̹̔ḛ̶͋ ̵͈̈̃̃͗ͅs̸̔̾̕͜o̵͕̫͉̥͊̒̀̕r̶̠̎̂t̵̡̝̘̘͗̋͊ś̵̥̈̃͊ ̷͎̂o̶̟̿f̶̮̈́ ̶͎̯̈́̂͂̒ẗ̸͎̰̘̳̮̪̞́ḧ̶͓́̈́͆̐̓ĩ̴̮͊̐̿͒͑̄͘n̸̛̹̠̼͉̰̤̗͠g̷̨̪͎̜̦͒͋̈́͗̈́͘̕͠ś̶̡͉̗͈̮̱̣͈̓)*
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/Chamerli/queerguessr.git
-git branch -M main
-git push -uf origin main
-```
+## to conclude:
+this is maybe the most fun project i did in a while as it happened in the best time to do so, this has tough me so much stuff about discord.py specially how `async tasks` works, **but most importanly:** spiritually and like about self identity without getting too personal ofc
 
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/Chamerli/queerguessr/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### anyways have fun and be proud :3
