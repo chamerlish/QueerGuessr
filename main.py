@@ -2,9 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import random
-import os
-from dotenv import load_dotenv
-from flags import flags  # Make sure this is your flags dictionary
+from flags import flags  # Your flags dictionary
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -49,27 +47,28 @@ async def play(ctx):
 async def start_game(ctx):
     channel_id = ctx.channel.id
 
-    # Initialize lock if not present
     if channel_id not in active_game_locks:
         active_game_locks[channel_id] = asyncio.Lock()
 
     async with active_game_locks[channel_id]:
-        # Cancel old hint tasks if any
         if channel_id in active_hint_tasks:
             for task in active_hint_tasks[channel_id]:
                 task.cancel()
-            # Wait for tasks to fully cancel
             await asyncio.gather(*active_hint_tasks[channel_id], return_exceptions=True)
             active_hint_tasks[channel_id] = []
         else:
             active_hint_tasks[channel_id] = []
 
         correct_answer, info = get_random_flag()
-        image = discord.File("./flags/" + info["image"], filename=info["image"])
+        
+        # Support multiple image filenames
+        images = info["image"] if isinstance(info["image"], list) else [info["image"]]
+        chosen_image = random.choice(images)
+        image_file = discord.File("./flags/" + chosen_image, filename=chosen_image)
 
         embed = discord.Embed(description="🌈 What flag is this?")
-        embed.set_image(url="attachment://" + info["image"])
-        await ctx.send(embed=embed, file=image)
+        embed.set_image(url="attachment://" + chosen_image)
+        await ctx.send(embed=embed, file=image_file)
 
         active_flags[channel_id] = [k.lower() for k in info["keywords"]]
         print(f"[{ctx.channel.name}] Answer: {correct_answer}")
@@ -77,7 +76,11 @@ async def start_game(ctx):
         async def send_hint(index, when_remaining):
             try:
                 await asyncio.sleep(ROUND_TIMEOUT - when_remaining)
-                if channel_id in active_flags and index < len(info["hints"]):
+                if (
+                    channel_id in active_flags
+                    and index < len(info["hints"])
+                    and info["hints"][index].strip() != ""
+                ):
                     await ctx.send(f"💡 Hint: {info['hints'][index]}")
             except asyncio.CancelledError:
                 return
@@ -92,13 +95,12 @@ async def start_game(ctx):
         await asyncio.sleep(ROUND_TIMEOUT / 2)
 
         if channel_id in active_flags:
-            await ctx.send(f"⏳ {ROUND_TIMEOUT / 2}s have passed! That's like half the time, and it's like double a quarter of the time, and it's like the 5 out of 6 minus the third of the full time, maybe you should try to guess and stop reading this stupid message")
+            await ctx.send(f"⏳ {ROUND_TIMEOUT / 2}s have passed! That's like half the time...")
 
         await asyncio.sleep(ROUND_TIMEOUT / 2)
 
         if channel_id in active_flags:
             active_flags.pop(channel_id)
-            # Cancel hint tasks again
             for task in active_hint_tasks[channel_id]:
                 task.cancel()
             await asyncio.gather(*active_hint_tasks[channel_id], return_exceptions=True)
@@ -122,7 +124,6 @@ async def on_message(message):
             )
             await result_msg.add_reaction("🔁")
             del active_flags[channel_id]
-            # Cancel running hint tasks to avoid old hints
             if channel_id in active_hint_tasks:
                 for task in active_hint_tasks[channel_id]:
                     task.cancel()
@@ -143,6 +144,7 @@ async def on_reaction_add(reaction, user):
         if channel.id not in active_flags:
             await channel.send(f"🔁 {user.mention} requested a replay! Starting a new round...")
             await start_game(ctx)
+            print(f"[{channel.name}] {user.name} requested a replay.")
         else:
             await channel.send("⚠️ A game is already in progress!")
 
@@ -166,6 +168,9 @@ async def on_reaction_add(reaction, user):
 
 def get_definition(word):
     return flags.get(word, {}).get("description", "No definition found.")
+
+import os
+from dotenv import load_dotenv
 
 load_dotenv()
 client.run(os.getenv("TOKEN"))

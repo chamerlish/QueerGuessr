@@ -45,6 +45,52 @@ flags = {
         "description": "A lesbian identity associated with feminist symbolism and empowerment."
     },
 
+    "Gynosexual": {
+        "image": ["gynosexual1.png", "gynosexual2.png"],
+        "hints": (
+            "It's a sexual orientation.",
+            "within \"gender\" boundaries.",
+            "Attraction to femininity...",
+        ),
+        "keywords": ("Gynosexual", "Gyno"),
+        "description": "Gynosexuality is a sexual orientation characterized by sexual attraction to women or feminine-presenting people, regardless of the gender identity of the person experiencing the attraction."
+    },
+    
+    "Androsexual": {
+        "image": ["androsexual1.jpg", "androsexual2.jpg"],
+        "hints": (
+            "It's a sexual orientation.",
+            "within \"gender\" boundaries.",
+            "Attraction to masculinity...",
+        ),
+        "keywords": ("Androsexual", "Andro"),
+        "description": "Androsexuality is a sexual orientation where a person is primarily or exclusively sexually attracted to men or masculine-presenting people, regardless of the individual’s gender identity."
+    },
+
+    "Skoliosexual": {
+        "image": "skoliosexual.jpg",
+        "hints": (
+            "It's a sexual orientation.",
+            "within \"gender\" boundaries."
+            "Attraction to non-binary or genderqueer individuals...",
+        ),
+        "keywords": ("Skoliosexual", "Skolio"), 
+        "description": "Skoliosexuality is a sexual orientation where a person is primarily or exclusively sexually attracted to nonbinary, genderqueer, or gender nonconforming individuals—those who do not identify strictly as male or female."
+    },
+
+    "Lithsexual": {
+        "image": "lithsexual.jpg",
+        "hints": (
+            "It's a sexual orientation.",
+            "",
+            "Experiences sexual attraction but not desire for reciprocation...",
+        ),
+        "keywords": ("Lithsexual", "Lith", "Akiosexual", "Akio"),
+        "description": "Lithsexual (also sometimes called akiosexual) is a sexual orientation where a person experiences sexual attraction to others but does not desire that attraction to be reciprocated or acted upon. In other words, they might feel sexual attraction toward someone but do not want or need that attraction to be returned or expressed back."
+    },
+
+
+    
     "Demiromantic": {
         "image": "demiromantic.jpg",
         "hints": (
@@ -79,7 +125,7 @@ flags = {
     },
 
     "Pansexual": {
-        "image": "pansexual.jpg",
+        "image": "pansexual.png",
         "hints": (
             "It's a sexual orientation.",
             "Inclusive of all gender identities.",
@@ -264,6 +310,19 @@ flags = {
         "keywords": ("Asexual", "Ace"),
         "description": "Experiencing little or no sexual attraction to others."
     },
+    
+    "Greysexual": {
+        "image": "greysexual.jpg",
+        "hints": (
+            "it's a Sexual orientation.", 
+            "",
+            "Falls somewhere between sexual and asexual; infrequent or situational attraction...",
+        ),
+        "keywords": ("Greysexual", "Grey"),
+        "description": "Graysexuality refers to a sexual orientation that exists somewhere between sexual and asexual on the spectrum. People who identify as graysexual experience sexual attraction, but very rarely, weakly, or under specific circumstances—unlike those who identify as fully sexual, who experience sexual attraction regularly, or asexual, who experience little to no sexual attraction."
+    },
+
+    
 }
 
 import random
