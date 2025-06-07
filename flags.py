@@ -23,6 +23,17 @@ flags = {
         "description": "A woman who is romantically and/or sexually attracted to other women."
     },
 
+    "Femaric": {
+        "image": "femaric.png",
+        "hints": (
+            "It's a sexual orientation.",
+            "Can be within or beyond \"gender\" boundaries.",
+            "Attraction to femininity...",
+        ),
+        "keywords": ("Femaric", "Femar", "Fem", "Feminine"),
+        "description": "Femaric is an umbrella term to describe any attraction to women or feminine-aligned individuals, and a standalone term as a non-straight identity. It was made with non-binary individuals in mind but can be used by anyone who experiences non-straight attraction to women."
+    },
+
     "Butch Lesbian": {
         "image": "butch-lesbian.jpg",
         "hints": (
@@ -64,7 +75,7 @@ flags = {
             "Attraction to masculinity...",
         ),
         "keywords": ("Androsexual", "Andro"),
-        "description": "Androsexuality is a sexual orientation where a person is primarily or exclusively sexually attracted to men or masculine-presenting people, regardless of the individual’s gender identity."
+        "description": "Androsexuality is a sexual orientation where a person is primarily or exclusively sexually attracted to men or masculine-presenting people, regardless of the individual's gender identity."
     },
 
     "Skoliosexual": {
@@ -79,7 +90,7 @@ flags = {
     },
 
     "Lithsexual": {
-        "image": "lithsexual.jpg",
+        "image": ["lithsexual1.webp", "lithsexual2.jpg"],
         "hints": (
             "It's a sexual orientation.",
             "",
@@ -132,7 +143,7 @@ flags = {
             "Attraction regardless of gender...",
         ),
         "keywords": ("Pansexual", "Pan"),
-        "description": "Attraction to people regardless of their gender identity."
+        "description": "Pansexual (often shortened to pan) is a sexual orientation describing an individual who experiences sexual attraction to individuals regardless of their gender. "
     },
 
     "Omnisexual": {
@@ -140,10 +151,10 @@ flags = {
         "hints": (
             "It's a sexual orientation.",
             "Inclusive of all gender identities.",
-            "Gender plays a role but doesn’t limit...",
+            "Gender plays a role but doesn't limit...",
         ),
-        "keywords": ("Omnisexual", "Omni"),
-        "description": "Attracted to all genders, with awareness of gender playing a role."
+        "keywords": ("Omnisexual", "Omni", "Multisexual", "Multi"),
+        "description": "Omnisexuality (often shortened to omni) is a multisexual orientation defined as the sexual attraction to all genders, however, gender usually still plays a role in one's attraction. Some omnisexuals have a gender preference and some do not. "
     },
 
     "Polysexual": {
@@ -153,8 +164,8 @@ flags = {
             "Inclusive of all gender identities.",
             "Attraction to two or more genders...",
         ),
-        "keywords": ("Polysexual",),
-        "description": "Attracted to multiple, but not all, genders."
+        "keywords": ("Polysexual", "Poly", "Polisexual", "Plysexual", "Poli", "Ply"),
+        "description": "Polysexual, also spelled plysexual or polisexual, sometimes shortened to ply, is the sexual attraction to many, but not necessarily all, genders. "
     },
 
     "Polyamorous": {
@@ -197,7 +208,7 @@ flags = {
             "Beyond tipical gender boundaries.",
             "Blending transgender and androgynous identities...",
         ),
-        "keywords": ("Transandrogynous",),
+        "keywords": ("Transandrogynous"),
         "description": "A gender identity blending transgender and androgynous traits."
     },
 
@@ -223,16 +234,79 @@ flags = {
         "description": "A transgender person with a more feminine gender identity."
     },
 
+    "Genderquestioning": {
+        "image": ["genderquestioning1.png", "genderquestioning2.jpg"],
+        "hints": (
+            "Gender expression focused.",
+            "Can be beyond gender boundaries.",
+            "???",
+        ),
+        "keywords": ("Genderquestioning", "?", "Questioning", "GenderQ"),
+        "description": "Gender questioning is the process where someone is exploring, thinking about, or uncertain about their own gender identity."
+    },
+
+    # "Libragender": {
+    #     "image": ["libragender.png",
+        
+
     "Genderfluid": {
         "image": "genderfluid.jpg",
         "hints": (
             "Gender expression focused.",
             "Tipically considered beyond gender boundaries.",
-            "Gender identity may shift over time...",
+            "Genderfluid is a term which refers to someone whose gender identity changes over time.",
         ),
         "keywords": ("Genderfluid", "Fluid"),
         "description": "A gender identity that shifts or changes over time."
     },
+
+    "Genderfae": {
+        "image": "genderfae.jpg",
+        "hints": (
+            "Gender expression focused.",
+            "Generally beyond gender boundaries.",
+            "A more feminine gender fluidity...",
+        ),
+        "keywords": ("Genderfae", "Fae", "Genderthil", "Genderdoe", "Thil", "Doe"),
+        "description": "Genderfae, also known as genderdoe or genderthil, is a form of genderfluidity that never encompasses male or masculine genders."
+    }, 
+
+    "Genderfaun": {
+        "image": "genderfaun.jpg",
+        "hints": (
+            "Gender expression focused.",
+            "Generally beyond gender boundaries.",
+            "A more masculine gender fluidity...",
+        ),
+        "keywords": ("Genderfaun", "Faun", "Genderbuck", "Genderstag", "Buck", "Stag", "Genderfawn", "Fawn"),
+        "Description": "Genderfaun, also known as genderfawn, is a form of genderfluidity that never encompasses female or feminine genders."
+    },
+
+
+
+
+    "Alexigender": {
+        "image": "alexigender.png",
+        "hints": (
+            "Gender expression focused.",
+            "Beyond gender boundaries.",
+            "Born out of *confusion...*",
+        ),
+        "keywords": ("Alexigender", "Alexi", "Congender", "Confugender", "Confused"),
+        "description": "Alexigender, also known as congender or confugender, is a micro-label for genderfluid individuals that know they move between genders but never know exactly what gender they are at a certain time",
+    },
+
+    "Bigender": {
+        "image": "bigender.png",
+        "hints": (
+            "Gender expression focused.",
+            "Beyond gender boundaries.",
+            "Can be a micro-label for genderfluidity...",
+        ),
+        "keywords": ("Bigender", "Bi"),
+        "description": "Bigender is a non-binary gender identity in which someone has two distinct gender identities. One could feel both genders at the same time or be fluid between them, in which case they may also identify as genderfluid."
+    },
+
 
     "Non-Binary": {
         "image": "non-binary.jpg",
@@ -245,12 +319,60 @@ flags = {
         "description": "A gender identity outside the traditional male/female binary."
     },
 
+    "Enbian": {
+        "image": "enbian.png",
+        "hints": (
+            "Focused on gender expression **AND SEXUALITY**.",
+            "Beyond gender boundaries.",
+            "Non-binary person who is attracted to non-binary people...",
+        ),
+        "keywords": ("Enbian", "Enbi", "Enbiansexual", "Enbiansex", "NBsexual", "NBsex", "Owtic", "Owticsexual", "Owticsex"),
+        "description": "Enbian, also known as non-binary loving non-binary (NBLNB), or owtic, is a diamoric orientation that refers to non-binary individuals attracted to non-binary individuals."
+    },
+
+
+
+    "Demiandrogynous": {
+        "image": "demiandrogynous.png",
+        "hints": (
+            "Gender expression focused.",
+            "Beyond gender boundaries.",
+            "a mix of two identities...",
+        ),
+        "keywords": ("Demiandrogynous", "Demiandro"),
+        "description": "Demiandrogyne or Demi-Androgynous is a demigender in which one is partially, but not fully androgyne or otherwise androgynous, or slightly but not fully relates to being androgyne."
+    },
+
+    "Demiboy": {
+        "image": "demiboy.png",
+        "hints": (
+            "Gender expression focused.",
+            "Beyond gender boundaries.",
+            "partially, but not fully, a boy"
+        ),
+        "keywords": ("Demiboy", "Demi", "Demiman", "Demiguy", "Demimale", "Demilad", "Demibro", "Demibloke", "Demiboi", "Demidude"),
+        "description": "Demiboy is a non-binary demigender gender in which one is partially, but not fully, a boy, man or otherwise not fully masculine.",
+    },
+
+    "Demigirl": {
+        "image": "demigirl.png",
+        "hints": (
+            "Gender expression focused.",
+            "Beyond gender boundaries.",
+            "partially, but not fully, a girl"
+        ),
+        "keywords": ("Demiboy", "Demi", "Demiwoman", "Demifemale", "Demilass", "Demigal", "Demidudette"),
+        "description": "Demigirl is a non-binary demigender gender in which one is partially, but not fully, a girl, woman or otherwise not fully feminine.",
+    },
+
+
+
     "Intersex": {
         "image": "intersex.jpg",
         "hints": (
             "Gender expression focused."
             "Biological variation.",
-            "Born with reproductive or sexual anatomy that doesn’t fit typical definitions...",
+            "Born with reproductive or sexual anatomy that doesn't fit typical definitions...",
         ),
         "keywords": ("Intersex", "Inter"),
         "description": "A person born with biological sex characteristics that don't fit typical definitions of male or female."
@@ -289,6 +411,19 @@ flags = {
         "description": "A gender identity that uses metaphors or concepts outside human gender norms."
     },
 
+    "Cassgender": {
+        "image": "cassgender.png",
+        "hints": (
+            "Gender expression focused.",
+            "",
+            "Unimportance of the gender identity...",
+        ),
+        "keywords": ("Cassgender", "Cass"),
+        "description": "Cassgender is a gender identity describing an individual who may experience a gender identity but feels that it is unimportant."
+    },
+
+
+
     "Two Spirit": {
         "image": "regions/two-spirit.jpg",
         "hints": (
@@ -310,6 +445,39 @@ flags = {
         "keywords": ("Asexual", "Ace"),
         "description": "Experiencing little or no sexual attraction to others."
     },
+
+    "Aeroace": {
+        "image": "aeroace.png",
+        "hints": (
+            "It's a sexual and romantic orientation.",
+            "IS under the asexual spectrum.",
+            "A combination of two oriontations...",
+        ),
+        "keywords": ("Aeroace", "Aero", "Ace", "Arose"),
+        "description": "A person who identifies as both aromantic and asexual, experiencing little or no romantic or sexual attraction."
+    },
+
+    "Fraysexual": {
+        "image": "fraysexual.png",
+        "hints": (
+            "It's a sexual orientation.",
+            "Is under the asexual spectrum.",
+            "Sexual attraction fades after familiarity...",
+        ),
+        "keywords": ("Fraysexual", "Fray"),
+        "description": "Fraysexual is a sexual orientation where a person experiences sexual attraction to someone until they become familiar with them, at which point the attraction fades."
+    },
+
+    "Cupiosexual": {
+        "image": "cupiosexual.jpg",
+        "hints": (
+            "It's a sexual orientation.",
+            "",
+            "Desires sexual experiences but lacks attraction...",
+        ),
+        "keywords": ("Cupiosexual", "Cupio", "Kalossexual", "Kalos"),
+        "description": "Cupiosexual, previously known as Kalossexual, is a micro-label on the asexual spectrum. Cupiosexual is defined as someone who does not experience sexual attraction but still desires/likes a sexual relationship."
+    },
     
     "Greysexual": {
         "image": "greysexual.jpg",
@@ -321,6 +489,33 @@ flags = {
         "keywords": ("Greysexual", "Grey"),
         "description": "Graysexuality refers to a sexual orientation that exists somewhere between sexual and asexual on the spectrum. People who identify as graysexual experience sexual attraction, but very rarely, weakly, or under specific circumstances—unlike those who identify as fully sexual, who experience sexual attraction regularly, or asexual, who experience little to no sexual attraction."
     },
+
+    "Greyromantic": {
+        "image": "greyromantic.jpg",
+        "hints": (
+            "It's a romantic orientation.",
+            "",
+            "Falls somewhere between romantic and aromantic; infrequent or situational attraction...",
+        ),
+        "keywords": ("Greyromantic", "Greyro"),
+        "description": "Grayromantic is a romantic orientation that exists somewhere between romantic and aromantic on the spectrum. People who identify as grayromantic experience romantic attraction, but very rarely, weakly, or under specific circumstances."
+    },
+
+    "Abrosexual": {
+        "image": "abrosexual.png",
+        "hints": (
+            "It's a sexual orientation.",
+            "",
+            "Sexual attraction that changes over time...",
+        ),
+        "keywords": ("Abrosexual", "Abro"),
+        "description": "A sexual orientation characterized by fluctuating sexual attraction, which can change frequently or unpredictably."
+
+    },
+
+
+
+
 
     
 }
